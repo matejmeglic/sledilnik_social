@@ -10,66 +10,24 @@ function InHospital(props) {
   );
 }
 
-const TextsDict = {
-  FB: {
-    default: {
-      text1: '',
-      text2: ': ',
-      text3: '',
-      text4: '',
-      text5: ', EIT: ',
-      text6: '',
-      text7: '',
-      text8: '',
-      text9: '.',
-    },
-    onlyValue: {},
-  },
-  TW: {
-    default: {},
-    onValue: {},
-  },
-};
-
-const defaultTexts = TextsDict.FB.default;
-
-const Brackets = ({ children }) => <>({children})</>;
-
 function withInHospital_HOC(Component) {
   const InHospital = ({ hospShort, hospitalName, hosp, icu, ...props }) => {
     const { social } = useContext(SocialContext);
-    const kindOfData = 'default';
+    const kindOfData = 'default'; // set which text to use from SocialTextDict
 
-    const newText = {
-      text3: ` ${hosp.text} `,
-      text7: ` ${icu.text} `,
-    };
-
-    const newData = {
+    const data = {
       value1: hospitalName,
       value2: hosp.number,
-      value4: (
-        <Brackets>
-          {hosp.in}, {hosp.out}
-        </Brackets>
-      ),
+      value4: `(${hosp.in}, ${hosp.out})`,
       value6: icu.number,
-      value8: (
-        <Brackets>
-          {icu.in}, {icu.out}
-        </Brackets>
-      ),
+      value8: `(${icu.in}, ${icu.out})`,
     };
-
-    TextsDict.FB.default = { ...defaultTexts, ...newText };
 
     const newProps = {
       ...props,
-      data: newData,
+      data,
       social,
       kindOfData,
-      defaultTexts: TextsDict.FB.default,
-      TextsDict,
       keyTitle: 'InHospital',
     };
 

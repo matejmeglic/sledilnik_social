@@ -124,11 +124,11 @@ const DEFAULT_InHospital = {
 const PCR = {
   FB: {
     default: { ...DEFAULT_PCR.default },
-    onValue: { ...DEFAULT_PCR.onlyValue },
+    onlyValue: { ...DEFAULT_PCR.onlyValue },
   },
   TW: {
     default: { ...DEFAULT_PCR.default, text4: '' },
-    onValue: { ...DEFAULT_PCR.onlyValue },
+    onlyValue: { ...DEFAULT_PCR.onlyValue },
   },
 };
 
